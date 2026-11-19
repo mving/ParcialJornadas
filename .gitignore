@@ -1,0 +1,55 @@
+# Archivos de la aplicación compilada
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Archivos para la máquina virtual ART/Dalvik
+*.dex
+
+# Archivos de clases de Java
+*.class
+
+# Archivos generados
+bin/
+gen/
+out/
+
+# Archivos de Gradle
+.gradle/
+build/
+/*/build/
+
+# Archivo de configuración local (ruta del SDK de Android, etc.)
+local.properties
+
+# Archivos de logs
+*.log
+
+# Carpeta de capturas de Android Studio
+captures/
+
+# Archivos de configuración de IntelliJ / Android Studio
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+.idea/modules.xml
+.idea/navEditor.xml
+.idea/deploymentTargetSelector.xml
+
+# Archivos de Keystore (claves de firmado)
+*.jks
+*.keystore
+
+# Carpetas de compilación nativa
+.externalNativeBuild
+.cxx/
+
+# Archivos específicos del sistema operativo
+.DS_Store
+Thumbs.db

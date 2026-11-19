@@ -9,8 +9,8 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:2:5-66
-11-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:2:22-64
+11-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:2:5-66
+11-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:2:22-64
 12
 13    <permission
 13-->[androidx.core:core:1.13.0] C:\Users\Manuel\.gradle\caches\transforms-4\a3db133ffc67abbc916a23ae4b5fd453\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
@@ -24,33 +24,33 @@
 17-->[androidx.core:core:1.13.0] C:\Users\Manuel\.gradle\caches\transforms-4\a3db133ffc67abbc916a23ae4b5fd453\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:3:5-10:19
+19-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:3:5-10:19
 20        android:allowBackup="false"
-20-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:3:51-78
+20-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:3:51-78
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 21-->[androidx.core:core:1.13.0] C:\Users\Manuel\.gradle\caches\transforms-4\a3db133ffc67abbc916a23ae4b5fd453\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 22        android:debuggable="true"
 23        android:extractNativeLibs="false"
 24        android:label="Jornadas del Sur"
-24-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:3:18-50
+24-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:3:18-50
 25        android:testOnly="true"
 26        android:theme="@android:style/Theme.Material.Light.NoActionBar" >
-26-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:3:79-142
+26-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:3:79-142
 27        <activity
-27-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:4:9-9:20
+27-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:4:9-9:20
 28            android:name="ar.jornadas.MainActivity"
-28-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:4:19-47
+28-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:4:19-47
 29            android:exported="true" >
-29-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:4:48-71
+29-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:4:48-71
 30            <intent-filter>
-30-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:5:13-8:29
+30-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:5:13-8:29
 31                <action android:name="android.intent.action.MAIN" />
-31-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:6:17-68
-31-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:6:25-66
+31-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:6:17-68
+31-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:6:25-66
 32
 33                <category android:name="android.intent.category.LAUNCHER" />
-33-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:7:17-76
-33-->C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\AndroidManifest.xml:7:27-74
+33-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:7:17-76
+33-->C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\AndroidManifest.xml:7:27-74
 34            </intent-filter>
 35        </activity>
 36        <activity

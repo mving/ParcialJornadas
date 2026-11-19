@@ -42,10 +42,10 @@ ar.jornadas.app-ui-text-release-40 C:\Users\Manuel\.gradle\caches\transforms-4\e
 ar.jornadas.app-sqlite-framework-2.4.0-41 C:\Users\Manuel\.gradle\caches\transforms-4\effd3e66999312c8a4c31964a2146394\transformed\sqlite-framework-2.4.0\res
 ar.jornadas.app-ui-geometry-release-42 C:\Users\Manuel\.gradle\caches\transforms-4\f513593dc0516cc407bc481c6c67ad12\transformed\ui-geometry-release\res
 ar.jornadas.app-animation-release-43 C:\Users\Manuel\.gradle\caches\transforms-4\f9ccb624363d44550effdf918ef6fc77\transformed\animation-release\res
-ar.jornadas.app-pngs-44 C:\Users\Manuel\Downloads\android\Jornadas\app\build\generated\res\pngs\debug
-ar.jornadas.app-resValues-45 C:\Users\Manuel\Downloads\android\Jornadas\app\build\generated\res\resValues\debug
-ar.jornadas.app-packageDebugResources-46 C:\Users\Manuel\Downloads\android\Jornadas\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-ar.jornadas.app-packageDebugResources-47 C:\Users\Manuel\Downloads\android\Jornadas\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-ar.jornadas.app-debug-48 C:\Users\Manuel\Downloads\android\Jornadas\app\build\intermediates\merged_res\debug\mergeDebugResources
-ar.jornadas.app-debug-49 C:\Users\Manuel\Downloads\android\Jornadas\app\src\debug\res
-ar.jornadas.app-main-50 C:\Users\Manuel\Downloads\android\Jornadas\app\src\main\res
+ar.jornadas.app-pngs-44 C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\build\generated\res\pngs\debug
+ar.jornadas.app-resValues-45 C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\build\generated\res\resValues\debug
+ar.jornadas.app-packageDebugResources-46 C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+ar.jornadas.app-packageDebugResources-47 C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+ar.jornadas.app-debug-48 C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\build\intermediates\merged_res\debug\mergeDebugResources
+ar.jornadas.app-debug-49 C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\debug\res
+ar.jornadas.app-main-50 C:\Users\Manuel\OneDrive\Documents\GitHub\ParcialJornadas\app\src\main\res
