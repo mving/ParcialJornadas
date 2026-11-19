@@ -21,8 +21,31 @@ interface CarteleraDao {
     @Query("SELECT * FROM charlas ORDER BY dia, hora, sala")
     fun observar(): Flow<List<Charla>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun guardar(fichas: List<Charla>)
+    @Query("DELETE FROM charlas WHERE id NOT IN (:ids)")
+    suspend fun borrarSobrantes(ids: List<String>)
+
+    @Query("DELETE FROM charlas")
+    suspend fun borrarTodas()
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertarIgnorando(ficha: Charla): Long
+
+    @Query("UPDATE charlas SET titulo=:titulo, tema=:tema, dia=:dia, hora=:hora, sala=:sala, ponente=:ponente, resumen=:resumen WHERE id=:id")
+    suspend fun actualizarDatos(id: String, titulo: String, tema: String, dia: Int, hora: String, sala: String, ponente: String, resumen: String)
+
+    @Transaction
+    suspend fun guardar(fichas: List<Charla>) {
+        val ids = fichas.map { it.id }
+        if (ids.isEmpty()) borrarTodas() else borrarSobrantes(ids)
+        
+        for (f in fichas) {
+            val insertado = insertarIgnorando(f)
+            if (insertado == -1L) {
+                // Si ya existía, actualizamos todo menos la columna 'favorita'
+                actualizarDatos(f.id, f.titulo, f.tema, f.dia, f.hora, f.sala, f.ponente, f.resumen)
+            }
+        }
+    }
 
     @Query("UPDATE charlas SET favorita = NOT favorita WHERE id = :id")
     suspend fun alternar(id: String)

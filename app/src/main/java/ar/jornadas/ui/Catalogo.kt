@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -13,22 +14,32 @@ import ar.jornadas.data.Charla
 
 @Composable
 fun Catalogo(model: ProgramaModel, abrir: (String) -> Unit) {
-    LaunchedEffect(Unit) { model.recargar() }
+    LaunchedEffect(Unit) { model.inicializar() }
     val dia by model.dia.collectAsStateWithLifecycle()
-    var tema by remember { mutableStateOf("Todos") }
+    var tema by rememberSaveable { mutableStateOf("Todos") }
     val fichas by model.charlas.collectAsStateWithLifecycle()
     val aviso by model.aviso.collectAsStateWithLifecycle()
     val cargando by model.cargando.collectAsStateWithLifecycle()
-    Selector(listOf("Ambos días", "Día 1", "Día 2"), dia) { model.dia.value = it }
+    Selector(listOf("Ambos días", "Día 1", "Día 2"), dia) { model.setDia(it) }
     val temas = listOf("Todos", "Android", "Datos", "Calidad")
     Selector(temas, temas.indexOf(tema)) { tema = temas[it] }
     TextButton(onClick = model::recargar) { Text("Actualizar") }
     if (cargando) LinearProgressIndicator(Modifier.fillMaxWidth())
-    if (aviso.isNotEmpty()) {
+    
+    if (!model.descargado && aviso.isNotEmpty()) {
         Text(aviso)
         OutlinedButton(onClick = model::recargar) { Text("Reintentar") }
     } else {
-        Grilla(fichas.filter { (dia == 0 || it.dia == dia) && (tema == "Todos" || it.tema == tema) }, abrir)
+        if (aviso.isNotEmpty()) {
+            Text(aviso)
+        }
+        val mostradas = fichas.filter { (dia == 0 || it.dia == dia) && (tema == "Todos" || it.tema == tema) }
+        
+        if (model.descargado && fichas.isEmpty()) {
+            Text("Sin charlas programadas")
+        } else {
+            Grilla(mostradas, abrir)
+        }
     }
 }
 

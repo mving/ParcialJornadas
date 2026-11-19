@@ -5,16 +5,20 @@ import androidx.annotation.NonNull;
 import androidx.room.CoroutinesRoom;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
+import androidx.room.RoomDatabaseKt;
 import androidx.room.RoomSQLiteQuery;
 import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
+import androidx.room.util.StringUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
 import java.lang.Class;
 import java.lang.Exception;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.StringBuilder;
 import java.lang.SuppressWarnings;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,6 +36,10 @@ public final class CarteleraDao_Impl implements CarteleraDao {
 
   private final EntityInsertionAdapter<Charla> __insertionAdapterOfCharla;
 
+  private final SharedSQLiteStatement __preparedStmtOfBorrarTodas;
+
+  private final SharedSQLiteStatement __preparedStmtOfActualizarDatos;
+
   private final SharedSQLiteStatement __preparedStmtOfAlternar;
 
   public CarteleraDao_Impl(@NonNull final RoomDatabase __db) {
@@ -40,7 +48,7 @@ public final class CarteleraDao_Impl implements CarteleraDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `charlas` (`id`,`titulo`,`tema`,`dia`,`hora`,`sala`,`ponente`,`resumen`,`favorita`) VALUES (?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR IGNORE INTO `charlas` (`id`,`titulo`,`tema`,`dia`,`hora`,`sala`,`ponente`,`resumen`,`favorita`) VALUES (?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -86,6 +94,22 @@ public final class CarteleraDao_Impl implements CarteleraDao {
         statement.bindLong(9, _tmp);
       }
     };
+    this.__preparedStmtOfBorrarTodas = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "DELETE FROM charlas";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfActualizarDatos = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "UPDATE charlas SET titulo=?, tema=?, dia=?, hora=?, sala=?, ponente=?, resumen=? WHERE id=?";
+        return _query;
+      }
+    };
     this.__preparedStmtOfAlternar = new SharedSQLiteStatement(__db) {
       @Override
       @NonNull
@@ -97,18 +121,116 @@ public final class CarteleraDao_Impl implements CarteleraDao {
   }
 
   @Override
+  public Object insertarIgnorando(final Charla ficha,
+      final Continuation<? super Long> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
+      @Override
+      @NonNull
+      public Long call() throws Exception {
+        __db.beginTransaction();
+        try {
+          final Long _result = __insertionAdapterOfCharla.insertAndReturnId(ficha);
+          __db.setTransactionSuccessful();
+          return _result;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
   public Object guardar(final List<Charla> fichas, final Continuation<? super Unit> $completion) {
+    return RoomDatabaseKt.withTransaction(__db, (__cont) -> CarteleraDao.DefaultImpls.guardar(CarteleraDao_Impl.this, fichas, __cont), $completion);
+  }
+
+  @Override
+  public Object borrarTodas(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
       public Unit call() throws Exception {
-        __db.beginTransaction();
+        final SupportSQLiteStatement _stmt = __preparedStmtOfBorrarTodas.acquire();
         try {
-          __insertionAdapterOfCharla.insert(fichas);
-          __db.setTransactionSuccessful();
-          return Unit.INSTANCE;
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
         } finally {
-          __db.endTransaction();
+          __preparedStmtOfBorrarTodas.release(_stmt);
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object actualizarDatos(final String id, final String titulo, final String tema,
+      final int dia, final String hora, final String sala, final String ponente,
+      final String resumen, final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfActualizarDatos.acquire();
+        int _argIndex = 1;
+        if (titulo == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, titulo);
+        }
+        _argIndex = 2;
+        if (tema == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, tema);
+        }
+        _argIndex = 3;
+        _stmt.bindLong(_argIndex, dia);
+        _argIndex = 4;
+        if (hora == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, hora);
+        }
+        _argIndex = 5;
+        if (sala == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, sala);
+        }
+        _argIndex = 6;
+        if (ponente == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, ponente);
+        }
+        _argIndex = 7;
+        if (resumen == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, resumen);
+        }
+        _argIndex = 8;
+        if (id == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, id);
+        }
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfActualizarDatos.release(_stmt);
         }
       }
     }, $completion);
@@ -227,6 +349,41 @@ public final class CarteleraDao_Impl implements CarteleraDao {
         _statement.release();
       }
     });
+  }
+
+  @Override
+  public Object borrarSobrantes(final List<String> ids,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final StringBuilder _stringBuilder = StringUtil.newStringBuilder();
+        _stringBuilder.append("DELETE FROM charlas WHERE id NOT IN (");
+        final int _inputSize = ids.size();
+        StringUtil.appendPlaceholders(_stringBuilder, _inputSize);
+        _stringBuilder.append(")");
+        final String _sql = _stringBuilder.toString();
+        final SupportSQLiteStatement _stmt = __db.compileStatement(_sql);
+        int _argIndex = 1;
+        for (String _item : ids) {
+          if (_item == null) {
+            _stmt.bindNull(_argIndex);
+          } else {
+            _stmt.bindString(_argIndex, _item);
+          }
+          _argIndex++;
+        }
+        __db.beginTransaction();
+        try {
+          _stmt.executeUpdateDelete();
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
   }
 
   @NonNull
